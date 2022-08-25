@@ -6,7 +6,7 @@
 #    By: dabel-co <dabel-co@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/03 15:41:57 by dabel-co          #+#    #+#              #
-#    Updated: 2022/05/03 15:43:19 by dabel-co         ###   ########.fr        #
+#    Updated: 2022/08/25 16:47:08 by dabel-co         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ FLAGS = -Wall -Werror -Wextra
 CC = cc
 FILES =	philo \
 
-C = $(addprefix ./philo/, $(addsuffix .c, $(FILES)))
+C = $(addsuffix .c, $(FILES))
 
 all: $(NAME)
 
