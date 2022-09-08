@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fdf.h                                           :+:      :+:    :+:   */
+/*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dabel-co <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dabel-co <dabel-co@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/06 18:49:03 by dabel-co          #+#    #+#             */
-/*   Updated: 2022/09/06 18:35:43 by dabel-co         ###   ########.fr       */
+/*   Created: 2022/09/07 12:55:55 by dabel-co          #+#    #+#             */
+/*   Updated: 2022/09/08 17:55:50 by dabel-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,14 @@
 # include <stdio.h>
 # include <pthread.h>
 # include <stdlib.h>
+# include <unistd.h>
 typedef struct s_philo
 {
 	int id;
-
-	struct s_philo_info *info;
+	struct s_philo_info	*info;
+	pthread_t			philo_th;
+	pthread_mutex_t		fork;
+	struct s_philo		*next;
 }				t_philo;
 typedef struct s_philo_info
 {
@@ -30,5 +33,7 @@ typedef struct s_philo_info
 	long sleep;
 	int repetitions;
 }				t_philo_info;
+
 int ft_atoi (const char *str);
+int launch_philos(t_philo *x, t_philo_info *info);
 #endif

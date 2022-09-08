@@ -5,73 +5,33 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dabel-co <dabel-co@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/03 15:43:45 by dabel-co          #+#    #+#             */
-/*   Updated: 2022/09/06 18:35:39 by dabel-co         ###   ########.fr       */
+/*   Created: 2022/09/07 12:55:27 by dabel-co          #+#    #+#             */
+/*   Updated: 2022/09/08 18:36:32 by dabel-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//philo number
-//time to die
-//time to eat
-//time to sleep
-//OPTIONAL : number of times philos need to eat for the sim to end, if blank, end with ded
-
 #include "philo.h"
 
-int check_valid_input(int argc, char **argv)
+void *philo_routine(t_philo *x)
 {
-	if (argc < 5 || argc > 6)
-	{
-		printf("Invalid number of arguments\n");
-		return (1);
-	}
-	argc++;
-	return (0);
+	printf("hello! This is philo number %d\n", x->id);
 }
 
-t_philo_info *extract_information(char **argv)
+void *philo_monitor(t_philo *x)
 {
-	t_philo_info	*x;
 
-	x = malloc(sizeof(t_philo_info));
-	x->size = ft_atoi(argv[1]);
-	x->die = ft_atoi(argv[2]);
-	x->eat = ft_atoi(argv[3]);
-	x->sleep = ft_atoi(argv[4]);
-	if (argv[5])
-		x->repetitions = ft_atoi(argv[5]);
-	else
-		x->repetitions = 0;
-	return (x);
 }
-int start_routine(t_philo_info *x)
+
+int launch_philos(t_philo *x, t_philo_info *info)
 {
-	t_philo	philo[x->size];
-	int		i;
+	int i;
 
 	i = 0;
-	while (i < x->size)
+	while (i < info->size)
 	{
-		philo[i].id = i + 1;
-		philo[i].info = x;
+		pthread_create(&x->philo_th, NULL, (void *(*)(void *)) &philo_routine, x);
+		usleep(500);
+		x = x->next;
 		i++;
 	}
-	i = 0;
-	while (i < x->size)
-	{
-		printf("philo number = %d\n", philo[i].id);
-		printf("die = %lu\n", philo[i].info->die);
-		i++;
-	}
-	return (0);
-
-}
-int main(int argc, char **argv)
-{
-	t_philo_info	*x;
-	if (check_valid_input(argc, argv))
-		return (1);
-	x = extract_information(argv);
-	start_routine(x);
-	return (0);
 }
