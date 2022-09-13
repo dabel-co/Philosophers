@@ -6,7 +6,7 @@
 /*   By: dabel-co <dabel-co@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 15:43:45 by dabel-co          #+#    #+#             */
-/*   Updated: 2022/09/08 18:36:34 by dabel-co         ###   ########.fr       */
+/*   Updated: 2022/09/13 19:05:36 by dabel-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ t_philo_info *extract_information(char **argv)
 	x->die = ft_atoi(argv[2]);
 	x->eat = ft_atoi(argv[3]);
 	x->sleep = ft_atoi(argv[4]);
+	x->dead = 0;
 	if (argv[5])
 		x->repetitions = ft_atoi(argv[5]);
 	else
