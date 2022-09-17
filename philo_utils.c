@@ -6,11 +6,35 @@
 /*   By: dabel-co <dabel-co@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 11:55:43 by dabel-co          #+#    #+#             */
-/*   Updated: 2022/09/13 19:05:34 by dabel-co         ###   ########.fr       */
+/*   Updated: 2022/09/17 17:06:49 by dabel-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+useconds_t	time_me(void)
+{
+	struct timeval	ti;
+
+	gettimeofday(&ti, NULL);
+	return (ti.tv_sec * 1000 + ti.tv_usec / 1000);
+}
+
+void	ft_usleep(useconds_t time, t_philo *x)
+{
+	useconds_t	actual_time;
+	useconds_t	interval_time;
+
+	actual_time = time_me();
+	interval_time = time + actual_time;
+	while (actual_time < interval_time)
+	{
+		actual_time = time_me();
+		printf("%u and %u -- %d\n", actual_time, interval_time, x->id);
+		usleep(time);
+	}
+	printf("done\n");
+}
 
 useconds_t	get_time(void)
 {
@@ -20,7 +44,7 @@ useconds_t	get_time(void)
 	return (ti.tv_sec * 1000 + ti.tv_usec / 1000);
 }
 
-int	ft_usleep(useconds_t wait_time)
+/*void	ft_usleep(useconds_t wait_time)
 {
 	useconds_t current_time;
 	useconds_t desired_time;
@@ -32,8 +56,8 @@ int	ft_usleep(useconds_t wait_time)
 		current_time = get_time();
 		usleep(wait_time);
 	}
-	return (0);
-}
+	printf("WOOOOOOOOOOOOOOOOOW\n");
+}*/
 int	ft_atoi(const char *str)
 {
 	int	i;

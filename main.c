@@ -6,7 +6,7 @@
 /*   By: dabel-co <dabel-co@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 15:43:45 by dabel-co          #+#    #+#             */
-/*   Updated: 2022/09/13 19:05:36 by dabel-co         ###   ########.fr       */
+/*   Updated: 2022/09/17 17:06:49 by dabel-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,9 @@ int start_routine(t_philo_info *x)
 	while (i < x->size)
 	{
 		philo->id = i + 1;
+		philo->meals = 0;
 		philo->info = x;
+		philo->info->dead = 0;
 		if (i + 1 != x->size)
 		{
 			philo->next = malloc(sizeof( struct s_philo));
