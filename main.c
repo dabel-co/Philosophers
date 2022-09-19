@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dabel-co <dabel-co@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/03 15:43:45 by dabel-co          #+#    #+#             */
-/*   Updated: 2022/09/19 15:22:53 by dabel-co         ###   ########.fr       */
+/*   Created: 2022/09/19 15:32:52 by dabel-co          #+#    #+#             */
+/*   Updated: 2022/09/19 17:30:51 by dabel-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,28 @@
 
 int	check_valid_input(int argc, char **argv)
 {
+	int	i;
+
 	if (argc < 5 || argc > 6)
 	{
 		printf("Invalid number of arguments\n");
 		return (1);
 	}
-	//parse
+	while (argc > 1)
+	{
+		i = 0;
+		argc--;
+		while (argv[argc][i] != '\0')
+		{
+			if (argv[argc][i] >= '0' && argv[argc][i] <= '9')
+				i++;
+			else
+			{
+				printf("invalid input\n");
+				return (1);
+			}
+		}
+	}
 	return (0);
 }
 
@@ -28,11 +44,11 @@ t_philo_info	*extract_information(char **argv)
 	t_philo_info	*x;
 
 	x = malloc(sizeof(t_philo_info));
+	x->dead = 0;
 	x->size = ft_atoi(argv[1]);
 	x->die = ft_atoi(argv[2]);
 	x->eat = ft_atoi(argv[3]);
 	x->sleep = ft_atoi(argv[4]);
-	x->dead = 0;
 	if (argv[5])
 		x->repetitions = ft_atoi(argv[5]);
 	else
@@ -55,7 +71,6 @@ int	start_routine(t_philo_info *x)
 		philo->meals = 0;
 		philo->info = x;
 		philo->info->dead = 0;
-		philo->last_meal = 0;
 		if (i + 1 != x->size)
 		{
 			philo->next = malloc(sizeof(struct s_philo));
@@ -65,6 +80,8 @@ int	start_routine(t_philo_info *x)
 	}
 	philo->next = aux;
 	launch_philos(philo->next, x);
+	free(aux);
+	free_mem(philo);
 	return (0);
 }
 
@@ -76,5 +93,6 @@ int	main(int argc, char **argv)
 		return (1);
 	x = extract_information(argv);
 	start_routine(x);
+	system("leaks philo");
 	return (0);
 }

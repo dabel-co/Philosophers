@@ -6,7 +6,7 @@
 /*   By: dabel-co <dabel-co@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 12:55:27 by dabel-co          #+#    #+#             */
-/*   Updated: 2022/09/19 15:28:28 by dabel-co         ###   ########.fr       */
+/*   Updated: 2022/09/19 17:30:50 by dabel-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,14 @@ void	*p_routine(t_philo *x)
 	if (x->id % 2 == 0)
 		usleep(100);
 	x->meals = 0;
-	x->last_meal = get_time();
+	x->last_meal = get_time() - x->info->init_time;
 	while (1)
 	{
 		philo_sequence(x);
 		if (x->info->dead != 0 || x->info->repetitions == -1)
 			break ;
 	}
-	return 0;
+	return (0);
 }
 
 int	philo_monitor(t_philo *x)
@@ -117,5 +117,4 @@ int	launch_philos(t_philo *x, t_philo_info *info)
 		i++;
 	}
 	return (0);
-	//free
 }

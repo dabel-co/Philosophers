@@ -6,11 +6,16 @@
 /*   By: dabel-co <dabel-co@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 11:55:43 by dabel-co          #+#    #+#             */
-/*   Updated: 2022/09/19 15:17:02 by dabel-co         ###   ########.fr       */
+/*   Updated: 2022/09/19 17:30:48 by dabel-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	free_mem(t_philo *x)
+{
+	//do thingy		
+}
 
 int	check_meals(t_philo *x)
 {
@@ -76,7 +81,7 @@ int	ft_atoi(const char *str)
 		if (atoi * n > 214748364 && str[i] - '0' > 7)
 			return (-1);
 		if (atoi * n < -214748364 && str[i] - '0' >= 8)
-			return (0);
+			return (-1);
 		atoi = atoi * 10 + (str[i] - '0');
 		i++;
 	}

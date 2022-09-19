@@ -6,12 +6,12 @@
 #    By: dabel-co <dabel-co@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/03 15:41:57 by dabel-co          #+#    #+#              #
-#    Updated: 2022/09/19 15:09:41 by dabel-co         ###   ########.fr        #
+#    Updated: 2022/09/19 17:32:58 by dabel-co         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
-FLAGS = -Wall -Wextra -pthread -fsanitize=address -g3
+FLAGS = -Wall -Wextra -pthread
 CC = cc
 FILES =	main \
 		philo_utils \
@@ -26,7 +26,6 @@ $(NAME):
 clean:
 	rm -f $(NAME)
 fclean: clean
-	make fclean -C ./Libft
 re: clean all
 
 .PHONY : all clean fclean re
