@@ -6,34 +6,30 @@
 /*   By: dabel-co <dabel-co@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 11:55:43 by dabel-co          #+#    #+#             */
-/*   Updated: 2022/09/17 17:06:49 by dabel-co         ###   ########.fr       */
+/*   Updated: 2022/09/19 15:17:02 by dabel-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-useconds_t	time_me(void)
+int	check_meals(t_philo *x)
 {
-	struct timeval	ti;
+	int	i;
 
-	gettimeofday(&ti, NULL);
-	return (ti.tv_sec * 1000 + ti.tv_usec / 1000);
-}
-
-void	ft_usleep(useconds_t time, t_philo *x)
-{
-	useconds_t	actual_time;
-	useconds_t	interval_time;
-
-	actual_time = time_me();
-	interval_time = time + actual_time;
-	while (actual_time < interval_time)
+	i = 0;
+	while (1)
 	{
-		actual_time = time_me();
-		printf("%u and %u -- %d\n", actual_time, interval_time, x->id);
-		usleep(time);
+		if (x->meals == x->info->repetitions)
+			i++;
+		else
+			return (0);
+		if (i == x->info->size)
+		{
+			x->info->repetitions = -1;
+			return (1);
+		}
+		x = x->next;
 	}
-	printf("done\n");
 }
 
 useconds_t	get_time(void)
@@ -44,20 +40,20 @@ useconds_t	get_time(void)
 	return (ti.tv_sec * 1000 + ti.tv_usec / 1000);
 }
 
-/*void	ft_usleep(useconds_t wait_time)
+void	ft_usleep(useconds_t wait_time)
 {
-	useconds_t current_time;
-	useconds_t desired_time;
+	useconds_t	current_time;
+	useconds_t	desired_time;
 
 	current_time = get_time();
-	desired_time = current_time + wait_time;
-	while (current_time < desired_time)
+	desired_time = current_time;
+	while (desired_time - current_time < wait_time)
 	{
-		current_time = get_time();
 		usleep(wait_time);
+		desired_time = get_time();
 	}
-	printf("WOOOOOOOOOOOOOOOOOW\n");
-}*/
+}
+
 int	ft_atoi(const char *str)
 {
 	int	i;
@@ -86,4 +82,3 @@ int	ft_atoi(const char *str)
 	}
 	return (atoi * n);
 }
-
