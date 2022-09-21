@@ -6,7 +6,7 @@
 /*   By: dabel-co <dabel-co@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 11:55:43 by dabel-co          #+#    #+#             */
-/*   Updated: 2022/09/19 17:30:48 by dabel-co         ###   ########.fr       */
+/*   Updated: 2022/09/21 13:02:19 by dabel-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,19 @@
 
 void	free_mem(t_philo *x)
 {
-	//do thingy		
+	int		i;
+	int		size;
+	t_philo	*aux;
+
+	size = x->info->size;
+	i = 0;
+	while (i < size)
+	{
+		aux = x->next;
+		free(x);
+		x = aux;
+		i++;
+	}
 }
 
 int	check_meals(t_philo *x)

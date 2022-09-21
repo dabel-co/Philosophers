@@ -6,7 +6,7 @@
 /*   By: dabel-co <dabel-co@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 15:32:52 by dabel-co          #+#    #+#             */
-/*   Updated: 2022/09/19 17:30:51 by dabel-co         ###   ########.fr       */
+/*   Updated: 2022/09/21 13:01:57 by dabel-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ int	check_valid_input(int argc, char **argv)
 		argc--;
 		while (argv[argc][i] != '\0')
 		{
-			if (argv[argc][i] >= '0' && argv[argc][i] <= '9')
+			if ((argv[argc][i] >= '0' && argv[argc][i] <= '9')
+					&& ft_atoi(argv[1]) > 0)
 				i++;
 			else
 			{
@@ -69,6 +70,7 @@ int	start_routine(t_philo_info *x)
 	{
 		philo->id = i + 1;
 		philo->meals = 0;
+		philo->info = malloc(sizeof(struct s_philo_info));
 		philo->info = x;
 		philo->info->dead = 0;
 		if (i + 1 != x->size)
@@ -80,7 +82,6 @@ int	start_routine(t_philo_info *x)
 	}
 	philo->next = aux;
 	launch_philos(philo->next, x);
-	free(aux);
 	free_mem(philo);
 	return (0);
 }
@@ -93,6 +94,5 @@ int	main(int argc, char **argv)
 		return (1);
 	x = extract_information(argv);
 	start_routine(x);
-	system("leaks philo");
 	return (0);
 }

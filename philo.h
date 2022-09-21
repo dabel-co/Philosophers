@@ -6,7 +6,7 @@
 /*   By: dabel-co <dabel-co@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 12:55:55 by dabel-co          #+#    #+#             */
-/*   Updated: 2022/09/19 15:21:59 by dabel-co         ###   ########.fr       */
+/*   Updated: 2022/09/21 13:01:14 by dabel-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,5 @@ int			launch_philos(t_philo *x, t_philo_info *info);
 void		ft_usleep(useconds_t wait_time);
 useconds_t	get_time(void);
 int			check_meals(t_philo *x);
+void		free_mem(t_philo *x);
 #endif
