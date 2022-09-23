@@ -74,9 +74,7 @@ void	*p_routine(t_philo *x)
 int	philo_monitor(t_philo *x)
 {
 	useconds_t	actual_time;
-	int			check;
 
-	check = 0;
 	while (1)
 	{
 		actual_time = get_time() - x->info->init_time;

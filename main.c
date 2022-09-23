@@ -86,6 +86,11 @@ int	start_routine(t_philo_info *x)
 	return (0);
 }
 
+void	leak(void)
+{
+	system("leaks -q philo");
+}
+
 int	main(int argc, char **argv)
 {
 	t_philo_info	*x;
@@ -94,5 +99,6 @@ int	main(int argc, char **argv)
 		return (1);
 	x = extract_information(argv);
 	start_routine(x);
+	atexit(leak);
 	return (0);
 }
